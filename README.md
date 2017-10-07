@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/Xesenix/xes-rx-tween.svg?branch=master)](https://travis-ci.org/Xesenix/xes-rx-tween)
 [![Coverage Status](https://coveralls.io/repos/github/Xesenix/xes-rx-tween/badge.svg?branch=master)](https://coveralls.io/github/Xesenix/xes-rx-tween?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Xesenix/xes-rx-tween.svg)](https://greenkeeper.io/)
 # Observable Tween with Rxjs
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Xesenix/xes-rx-tween.svg)](https://greenkeeper.io/)
 
 This library supplies you with observable for tweening over numbers.
 
