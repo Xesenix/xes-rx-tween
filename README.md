@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Xesenix/xes-rx-tween/badge.svg?branch=master)](https://coveralls.io/github/Xesenix/xes-rx-tween?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Xesenix/xes-rx-tween.svg)](https://greenkeeper.io/)
 [![bitHound Overall Score](https://www.bithound.io/github/Xesenix/xes-rx-tween/badges/score.svg)](https://www.bithound.io/github/Xesenix/xes-rx-tween)
+[![Known Vulnerabilities](https://snyk.io/test/github/xesenix/xes-rx-tween/badge.svg)](https://snyk.io/test/github/xesenix/xes-rx-tween)
 
 # Observable Tween with Rxjs
 
