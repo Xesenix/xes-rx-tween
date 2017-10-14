@@ -32,7 +32,7 @@ export class TweenObservable extends Observable<number> {
 	 * @param {number} end      end value
 	 */
 	static create(
-		duration: number,
+		duration: number = 1000,
 		start: number = 0,
 		end: number = 1,
 		scheduler: IScheduler = animationFrame
@@ -57,11 +57,15 @@ export class TweenObservable extends Observable<number> {
 	}
 
 	protected _subscribe(subscriber: Subscriber<number>): TeardownLogic {
-		return this.scheduler.schedule(TweenObservable.dispatch, 0, {
-			startTime: this.scheduler.now(),
-			duration: this.duration,
-			scheduler: this.scheduler,
-			subscriber
-		});
+		if (this.scheduler) {
+			return this.scheduler.schedule(TweenObservable.dispatch, 0, {
+				startTime: this.scheduler.now(),
+				duration: this.duration,
+				scheduler: this.scheduler,
+				subscriber
+			});
+		}
+		subscriber.next(1);
+		subscriber.complete();
 	}
 }
