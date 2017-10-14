@@ -48,6 +48,7 @@ describe("TweenObservable", () => {
 					() => {},
 					() => {
 						const executionTime = Date.now() - startTime;
+						expect(lastValue).toEqual(endValue);
 						expect(executionTime).toBeGreaterThanOrEqual(delay + duration);
 						expect(executionTime).toBeLessThanOrEqual(delay + duration + 20);
 						done();
@@ -127,12 +128,61 @@ describe("TweenObservable", () => {
 					() => {},
 					() => {
 						const executionTime = Date.now() - startTime;
+						expect(lastValue).toEqual(endValue);
 						expect(executionTime).toBeGreaterThanOrEqual(duration);
 						expect(executionTime).toBeLessThanOrEqual(duration + 20);
 						done();
 					}
 				);
 			});
+		});
+
+		it(`should end execution after 1000ms duration and return values from 0 to 1 when no params were provided`, done => {
+			const startTime = Date.now();
+			let lastValue = 0;
+
+			const tween = TweenObservable.create();
+
+			tween.subscribe(
+				v => {
+					expect(v).toBeGreaterThanOrEqual(lastValue);
+					expect(v).toBeLessThanOrEqual(1);
+
+					lastValue = v;
+				},
+				() => {},
+				() => {
+					const executionTime = Date.now() - startTime;
+					expect(lastValue).toEqual(1);
+					expect(executionTime).toBeGreaterThanOrEqual(1000);
+					expect(executionTime).toBeLessThanOrEqual(1020);
+					done();
+				}
+			);
+		});
+
+		it(`should end execution immediately and return value 1 when null scheduler`, done => {
+			const startTime = Date.now();
+			let lastValue = 0;
+
+			const tween = TweenObservable.create(1000, 0, 1, null);
+
+			tween.subscribe(
+				v => {
+					expect(v).toBeGreaterThanOrEqual(lastValue);
+					expect(v).toBeLessThanOrEqual(1);
+
+					lastValue = v;
+				},
+				() => {},
+				() => {
+					const executionTime = Date.now() - startTime;
+					expect(lastValue).toEqual(1);
+					expect(executionTime).toBeGreaterThanOrEqual(0);
+					expect(executionTime).toBeLessThanOrEqual(20);
+					done();
+				}
+			);
 		});
 	});
 });
