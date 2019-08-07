@@ -83,7 +83,7 @@
     "@types/node": "^9.3.0",
     "colors": "^1.2.1",
     "commitizen": "^2.9.6",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.6",
     "cross-env": "^5.0.1",
     "cz-conventional-changelog": "^2.0.0",
     "greenkeeper-lockfile": "^1.14.0",
