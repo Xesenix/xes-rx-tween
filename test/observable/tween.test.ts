@@ -1,7 +1,5 @@
-import { Observable } from "rxjs/Rx";
+import { delay as delayTime } from "rxjs/operators";
 import { setTimeout } from "timers";
-import { IScheduler } from "rxjs/Scheduler";
-import { Subscription } from "rxjs/Subscription";
 
 import { TweenObservable } from "../../src/observable/tween";
 
@@ -39,7 +37,7 @@ describe("TweenObservable", () => {
 
 				const tween = new TweenObservable(duration);
 
-				tween.delay(delay).subscribe(
+				tween.pipe(delayTime(delay)).subscribe(
 					v => {
 						expect(v).toBeGreaterThanOrEqual(lastValue);
 						expect(v).toBeLessThanOrEqual(endValue);

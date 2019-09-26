@@ -1,3 +1,3 @@
 import { TweenObservable } from "./observable/tween";
 
-export { TweenObservable };
+export default TweenObservable;
