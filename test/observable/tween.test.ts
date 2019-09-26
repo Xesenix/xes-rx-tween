@@ -50,7 +50,7 @@ describe("TweenObservable", () => {
 						const executionTime = Date.now() - startTime;
 						expect(lastValue).toEqual(endValue);
 						expect(executionTime).toBeGreaterThanOrEqual(delay + duration);
-						expect(executionTime).toBeLessThanOrEqual(delay + duration + 20);
+						expect(executionTime).toBeLessThanOrEqual(delay + duration + 30);
 						done();
 					}
 				);
@@ -130,7 +130,7 @@ describe("TweenObservable", () => {
 						const executionTime = Date.now() - startTime;
 						expect(lastValue).toEqual(endValue);
 						expect(executionTime).toBeGreaterThanOrEqual(duration);
-						expect(executionTime).toBeLessThanOrEqual(duration + 20);
+						expect(executionTime).toBeLessThanOrEqual(duration + 30);
 						done();
 					}
 				);

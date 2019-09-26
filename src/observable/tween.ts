@@ -2,6 +2,7 @@ import { animationFrame } from "rxjs/scheduler/animationFrame";
 import { TeardownLogic } from "rxjs/Subscription";
 import { IScheduler } from "rxjs/Scheduler";
 import { Observable, Subscriber } from "rxjs/Rx";
+import { map } from "rxjs/operators/map";
 
 /**
  * Emits values between 0 and 1 over duration of time.
@@ -20,7 +21,7 @@ export class TweenObservable extends Observable<number> {
 	 */
 	constructor(
 		protected duration: number,
-		private scheduler: IScheduler = animationFrame
+		private scheduler: IScheduler | null = animationFrame
 	) {
 		super();
 	}
@@ -35,10 +36,10 @@ export class TweenObservable extends Observable<number> {
 		duration: number = 1000,
 		start: number = 0,
 		end: number = 1,
-		scheduler: IScheduler = animationFrame
+		scheduler: IScheduler | null = animationFrame
 	) {
-		return new TweenObservable(duration, scheduler).map(
-			v => start + (end - start) * v
+		return new TweenObservable(duration, scheduler).pipe(
+			map(v => start + (end - start) * v)
 		);
 	}
 
@@ -56,7 +57,7 @@ export class TweenObservable extends Observable<number> {
 		(this as any).schedule(state);
 	}
 
-	protected _subscribe(subscriber: Subscriber<number>): TeardownLogic {
+	public _subscribe(subscriber: Subscriber<number>): TeardownLogic {
 		if (this.scheduler) {
 			return this.scheduler.schedule(TweenObservable.dispatch, 0, {
 				startTime: this.scheduler.now(),
