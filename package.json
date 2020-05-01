@@ -33,7 +33,9 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -112,7 +114,8 @@
     "rxjs": "^6.5.3"
   },
   "dependencies": {
-    "commitlint": "^8.2.0"
+    "commitlint": "^8.2.0",
+    "snyk": "^1.316.1"
   },
   "husky": {
     "hooks": {
@@ -120,5 +123,6 @@
       "pre-commit": "lint-staged",
       "pre-push": "npm run test:prod && npm run build"
     }
-  }
+  },
+  "snyk": true
 }
