@@ -112,7 +112,7 @@
     "rxjs": "^6.5.3"
   },
   "dependencies": {
-    "commitlint": "^8.2.0"
+    "commitlint": "^8.3.5"
   },
   "husky": {
     "hooks": {
