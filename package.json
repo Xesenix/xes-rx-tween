@@ -19,7 +19,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=10.13.0"
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
@@ -37,8 +37,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --use-tabs --parser typescript",
-      "git add"
+      "prettier --write --use-tabs --parser typescript"
     ]
   },
   "config": {
@@ -52,7 +51,7 @@
   },
   "jest": {
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts|tsx)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
@@ -77,42 +76,40 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
     "colors": "^1.4.0",
-    "commitizen": "^4.0.3",
-    "coveralls": "^3.0.0",
-    "cross-env": "^6.0.0",
-    "cz-conventional-changelog": "^2.0.0",
+    "commitizen": "^4.2.2",
+    "commitlint": "^11.0.0",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.3.0",
     "greenkeeper-lockfile": "^1.14.0",
-    "husky": "^3.0.5",
-    "jest": "^25.0.0",
-    "lint-staged": "^9.4.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.1",
     "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.7.4",
+    "prettier": "^2.1.2",
     "prompt": "^1.0.0",
-    "replace-in-file": "^4.1.3",
-    "rimraf": "^2.6.1",
-    "rollup": "^1.21.4",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "replace-in-file": "^6.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.33.2",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rxjs": "^6.5.3",
-    "semantic-release": "^15.13.24",
-    "ts-jest": "^24.1.0",
-    "ts-node": "^6.0.1",
-    "tslint": "^5.20.0",
+    "semantic-release": "^17.2.3",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1",
-    "typedoc": "^0.15.0",
-    "typescript": "^3.6.3",
+    "tslint-config-standard": "^9.0.0",
+    "typedoc": "^0.15.8",
+    "typescript": "^4.0.5",
     "validate-commit-msg": "^2.14.0"
   },
   "peerDependencies": {
     "rxjs": "^6.5.3"
-  },
-  "dependencies": {
-    "commitlint": "^8.2.0"
   },
   "husky": {
     "hooks": {
@@ -120,5 +117,6 @@
       "pre-commit": "lint-staged",
       "pre-push": "npm run test:prod && npm run build"
     }
-  }
+  },
+  "dependencies": {}
 }
