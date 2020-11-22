@@ -1,11 +1,11 @@
-import { delay as delayTime } from "rxjs/operators";
-import { setTimeout } from "timers";
+import { delay as delayTime } from 'rxjs/operators';
+import { setTimeout } from 'timers';
 
-import { tweenObservable } from "../../src/observable/tween";
+import { tweenObservable } from '../../src/observable/tween';
 
 // jest.useFakeTimers()
 
-describe("tweenObservable", () => {
+describe('tweenObservable', () => {
 	[
 		{
 			delay: 0,
@@ -28,7 +28,7 @@ describe("tweenObservable", () => {
 			duration: 700,
 		},
 	].forEach(({ delay, duration }) => {
-		it(`should end execution after ${
+		test(`should end execution after ${
 			delay + duration
 		}ms including ${delay}ms delay and return growing values between 0 and 1`, (done) => {
 			const startTime = Date.now();
@@ -56,7 +56,7 @@ describe("tweenObservable", () => {
 		});
 	});
 
-	it("should stop execution on unsubscribe", (done) => {
+	test('should stop execution on unsubscribe', (done) => {
 		const duration = 1000;
 		const errorTime = 500;
 		const tween = tweenObservable(duration);
@@ -102,7 +102,7 @@ describe("tweenObservable", () => {
 			endValue: -20,
 		},
 	].forEach(({ duration, startValue, endValue }) => {
-		it(`should end execution after ${duration}ms duration and return values from ${startValue} to ${endValue}`, (done) => {
+		test(`should end execution after ${duration}ms duration and return values from ${startValue} to ${endValue}`, (done) => {
 			const startTime = Date.now();
 			let lastValue = startValue;
 
@@ -131,7 +131,7 @@ describe("tweenObservable", () => {
 		});
 	});
 
-	it(`should end execution after 1000ms duration and return values from 0 to 1 when no params were provided`, (done) => {
+	test(`should end execution after 1000ms duration and return values from 0 to 1 when no params were provided`, (done) => {
 		const startTime = Date.now();
 		let lastValue = 0;
 
@@ -155,7 +155,7 @@ describe("tweenObservable", () => {
 		);
 	});
 
-	it(`should end execution immediately and return value 1 when null scheduler`, (done) => {
+	test(`should end execution immediately and return value 1 when null scheduler`, (done) => {
 		const startTime = Date.now();
 		let lastValue = 0;
 
