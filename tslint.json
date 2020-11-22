@@ -1,10 +1,28 @@
 {
-  "extends": [
-    "tslint-config-standard",
-    "tslint-config-prettier"
-  ],
-  "rules": {
-    "no-empty": false,
-    "indent": [true, "tabs", 2]
-  }
+	"extends": [
+		"tslint-config-standard",
+		"tslint-config-prettier"
+	],
+	"rules": {
+		"no-empty": false,
+		"indent": [true, "tabs", 2],
+		"import-spacing": true,
+		"ordered-imports": [
+			true,
+			{
+				"import-sources-order": "lowercase-first",
+				"named-imports-order": "lowercase-first"
+			}
+		],
+		"no-duplicate-imports": true,
+		"no-consecutive-blank-lines": true,
+		"no-trailing-whitespace": true,
+		"prefer-readonly": true,
+		"semicolon": true,
+		"trailing-comma": true,
+		"quotemark": [
+			true,
+			"single"
+		]
+	}
 }
