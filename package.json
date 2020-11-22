@@ -23,9 +23,7 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
@@ -76,8 +74,6 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
     "colors": "^1.4.0",
@@ -94,9 +90,6 @@
     "prettier": "^2.1.2",
     "prompt": "^1.0.0",
     "replace-in-file": "^6.1.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.33.2",
-    "rollup-plugin-sourcemaps": "^0.4.2",
     "rxjs": "^6.5.3",
     "semantic-release": "^17.2.3",
     "ts-jest": "^26.4.4",
