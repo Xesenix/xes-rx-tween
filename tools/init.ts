@@ -21,7 +21,6 @@ const rmFiles = [
 const modifyFiles = [
 	'LICENSE',
 	'package.json',
-	'rollup.config.ts',
 	'test/library.test.ts',
 	'tools/gh-pages-publish.ts'
 ]
@@ -259,7 +258,7 @@ function finalize() {
 
 	// Remove post-install command
 	let jsonPackage = path.resolve(__dirname, "..", "package.json")
-	const pkg = JSON.parse(readFileSync(jsonPackage) as any)
+	const pkg = JSON.parse(readFileSync(jsonPackage))
 
 	// Note: Add items to remove from the package file here
 	delete pkg.scripts.postinstall
