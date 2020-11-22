@@ -3,8 +3,8 @@
   "version": "0.5.0",
   "description": "",
   "keywords": [],
-  "main": "dist/xes-rx-tween.umd.js",
-  "module": "dist/xes-rx-tween.es5.js",
+  "main": "dist/umd/xes-rx-tween.js",
+  "module": "dist/umd/xes-rx-tween.js",
   "typings": "dist/types/xes-rx-tween.d.ts",
   "files": [
     "dist"
@@ -22,20 +22,23 @@
     "node": ">=10.13.0"
   },
   "scripts": {
+    "tsc": "tsc -p tsconfig.types.json --diagnostics --pretty",
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "webpack && typedoc --out docs --target es6 --theme minimal --mode file src && npm run build:types && npm run test:build",
     "test": "jest --coverage",
+    "test:build": "cross-env INTEGRATION_TEST=true jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
     "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "build:types": "tsc --project tsconfig.types.json --emitDeclarationOnly"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --write --use-tabs --parser typescript"
+      "tslint -c tslint.json"
     ]
   },
   "config": {
@@ -72,10 +75,24 @@
     "collectCoverage": true
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/plugin-proposal-json-strings": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "@babel/plugin-syntax-json-strings": "^7.8.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@types/clean-webpack-plugin": "^0.1.3",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
+    "@types/webpack": "^4.41.25",
+    "babel-loader": "^8.2.1",
+    "clean-webpack-plugin": "^3.0.0",
     "colors": "^1.4.0",
     "commitizen": "^4.2.2",
     "commitlint": "^11.0.0",
@@ -100,6 +117,8 @@
     "typedoc": "^0.15.8",
     "typescript": "^4.0.5",
     "validate-commit-msg": "^2.14.0"
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
   },
   "peerDependencies": {
     "rxjs": "^6.5.3"
